@@ -45,7 +45,15 @@ function App() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ text: newTodo }),
-    }).then((res) => res.json());
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+        // Catch non-2xx HTTP status codes
+      } else {
+        setNewTodo(`HTTP error, status = ${res.status}`);
+        throw new Error(`HTTP error, status = ${res.status}`);
+      }
+    });
 
     setTodos([...todos, data]);
     setModalActive(false);
