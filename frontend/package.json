@@ -35,7 +35,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://app-backend:3001",
+  "proxy": "http://host.docker.internal:8082",
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.0.0"
   }

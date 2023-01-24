@@ -37,7 +37,6 @@ services:
       - "3001:3001"
     networks:
       - nw-app-backend
-      - nw-app-frontend
     depends_on:
       - app-mongodb
       - gateway
@@ -116,7 +115,6 @@ services:
       - nw-gravitee-backend
       - nw-gravitee-frontend
       - nw-app-backend
-      - nw-app-frontend
 
   management_api:
     image: graviteeio/apim-management-api:${APIM_VERSION:-latest}
