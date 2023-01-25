@@ -50,7 +50,7 @@ function App() {
         return res.json();
         // Catch non-2xx HTTP status codes
       } else {
-        setNewTodo(`HTTP error, status = ${res.status}`);
+        alert(`HTTP error, status = ${res.status}`);
         throw new Error(`HTTP error, status = ${res.status}`);
       }
     });
@@ -97,7 +97,13 @@ function App() {
       </div>
       {modalActive ? (
         <div className="modal">
-          <div className="modal__close" onClick={() => setModalActive(false)}>
+          <div
+            className="modal__close"
+            onClick={() => {
+              setModalActive(false);
+              setNewTodo("");
+            }}
+          >
             x
           </div>
           <div className="modal__content">
