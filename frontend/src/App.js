@@ -11,7 +11,11 @@ function App() {
   }, []);
 
   const getTodos = () => {
-    fetch("/todos")
+    fetch("/todos", {
+      headers: {
+        "X-Gravitee-Api-Key": process.env.REACT_APP_API_KEY,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setTodos(data))
       .catch((err) => console.error(`Error: ${err}`));
@@ -20,6 +24,9 @@ function App() {
   const completeTodo = async (id) => {
     const data = await fetch(`/todos/${id}`, {
       method: "PATCH",
+      headers: {
+        "X-Gravitee-Api-Key": process.env.REACT_APP_API_KEY,
+      },
     }).then((res) => res.json());
 
     setTodos((todos) =>
@@ -35,6 +42,9 @@ function App() {
   const deleteTodo = async (id) => {
     const data = await fetch(`/todos/${id}`, {
       method: "DELETE",
+      headers: {
+        "X-Gravitee-Api-Key": process.env.REACT_APP_API_KEY,
+      },
     }).then((res) => res.json());
 
     setTodos((todos) => todos.filter((todo) => todo._id !== data._id));
@@ -43,7 +53,10 @@ function App() {
   const addTodo = async () => {
     const data = await fetch("/todos", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "X-Gravitee-Api-Key": process.env.REACT_APP_API_KEY,
+      },
       body: JSON.stringify({ text: newTodo }),
     }).then((res) => {
       if (res.ok) {
