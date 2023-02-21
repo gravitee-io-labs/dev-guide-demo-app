@@ -52,6 +52,8 @@ services:
       - nw-app-frontend
     depends_on:
       - app-backend
+    # env_file:
+    # - .env
 
 ### LOCAL API MANAGEMENT
 
@@ -136,6 +138,8 @@ services:
     networks:
       - nw-gravitee-backend
       - nw-gravitee-frontend
+    # env_file:
+    # - .env
 
   management_ui:
     image: graviteeio/apim-management-ui:${APIM_VERSION:-latest}
